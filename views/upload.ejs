@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Image</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Upload Image</h1>
+        <!-- Notification for upload -->
+        <div id="uploadNotification" class="alert alert-success mt-3" style="display: none;">
+            Image uploaded successfully!
+        </div>
+        <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data" class="mt-3">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="imageUpload" name="file" accept="image/*">
+                <label class="custom-file-label" for="imageUpload" id="fileLabel">Choose file</label>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Upload</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Display notification when form is submitted
+        $('#uploadForm').submit(function() {
+            $('#uploadNotification').fadeIn().delay(3000).fadeOut(); // Show notification for 3 seconds
+        });
+
+        // Update file label when file is selected
+        $('#imageUpload').on('change', function() {
+            // Get the file name
+            var fileName = $(this).val().split('\\').pop();
+            // Update the label text
+            $('#fileLabel').text(fileName);
+        });
+    </script>
+</body>
+</html>
